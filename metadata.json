@@ -1,0 +1,6 @@
+{
+  "name": "Petros ICA Secondary School Management System",
+  "description": "A comprehensive Secondary School Management System for Petros ICA with role-based dashboard for administrators and teachers to manage student enrollment, academic records, attendance tracking, and report card generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

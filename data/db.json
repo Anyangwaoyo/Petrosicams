@@ -1,0 +1,124 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "username": "admin",
+      "name": "Administrator",
+      "role": "admin",
+      "email": "admin@petrosica.edu.ng",
+      "phone": "+234 803 123 4567"
+    },
+    {
+      "id": "u2",
+      "username": "teacher",
+      "name": "Mrs. Grace Okon",
+      "role": "teacher",
+      "email": "g.okon@petrosica.edu.ng",
+      "phone": "+234 802 987 6543",
+      "teacherId": "t1"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "ses1",
+      "name": "2025/2026",
+      "isCurrent": true
+    }
+  ],
+  "terms": [
+    {
+      "id": "term1",
+      "name": "First Term",
+      "isCurrent": true
+    },
+    {
+      "id": "term2",
+      "name": "Second Term",
+      "isCurrent": false
+    },
+    {
+      "id": "term3",
+      "name": "Third Term",
+      "isCurrent": false
+    }
+  ],
+  "classes": [
+    {
+      "id": "c1",
+      "name": "JSS 1 Gold",
+      "gradeLevel": "JSS 1",
+      "classTeacherId": "t1"
+    }
+  ],
+  "subjects": [
+    {
+      "id": "sub1",
+      "name": "Mathematics",
+      "code": "MTH"
+    },
+    {
+      "id": "sub2",
+      "name": "English Language",
+      "code": "ENG"
+    }
+  ],
+  "classSubjects": [
+    {
+      "id": "cs1",
+      "classId": "c1",
+      "subjectId": "sub1",
+      "teacherId": "t1"
+    },
+    {
+      "id": "cs2",
+      "classId": "c1",
+      "subjectId": "sub2",
+      "teacherId": "t1"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "t1",
+      "firstName": "Grace",
+      "lastName": "Okon",
+      "email": "g.okon@petrosica.edu.ng",
+      "phone": "+234 802 987 6543",
+      "gender": "Female",
+      "qualification": "B.Ed. Mathematics",
+      "dateJoined": "2024-09-01",
+      "assignedClassId": "c1"
+    }
+  ],
+  "students": [
+    {
+      "id": "st1",
+      "admissionNumber": "PET/2025/001",
+      "firstName": "Chidi",
+      "lastName": "Nwachukwu",
+      "gender": "Male",
+      "dateOfBirth": "2013-05-12",
+      "currentClassId": "c1",
+      "parentName": "Mr. Nwachukwu",
+      "parentPhone": "+234 803 555 1234",
+      "parentEmail": "parent.nwachukwu@example.com",
+      "address": "12 Petros Close, Lagos",
+      "passportPhoto": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=150",
+      "status": "Active",
+      "enrolledSessionId": "ses1"
+    }
+  ],
+  "attendance": [],
+  "results": [],
+  "reportRemarks": [],
+  "academicHistory": [],
+  "notices": [
+    {
+      "id": "n1",
+      "title": "Welcome to 2025/2026 Session",
+      "content": "Welcome back all staff and students. We look forward to an excellent and productive academic term.",
+      "authorName": "Administrator",
+      "authorRole": "admin",
+      "datePosted": "2026-01-05"
+    }
+  ]
+}
