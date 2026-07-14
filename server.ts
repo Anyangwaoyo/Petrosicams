@@ -156,11 +156,11 @@ let currentSessionUser: User | null = null;
 
 // Score calculations:
 function calculateGradeAndRemark(total: number): { grade: string; remark: string } {
-  if (total >= 80) return { grade: "A", remark: "Excellent" };
-  if (total >= 70) return { grade: "B", remark: "Very Good" };
-  if (total >= 60) return { grade: "C", remark: "Good" };
-  if (total >= 50) return { grade: "D", remark: "Pass" };
-  if (total >= 40) return { grade: "E", remark: "Weak Pass" };
+  if (total >= 70) return { grade: "A", remark: "Excellent" };
+  if (total >= 60) return { grade: "B", remark: "Very Good" };
+  if (total >= 50) return { grade: "C", remark: "Good" };
+  if (total >= 45) return { grade: "D", remark: "Fair" };
+  if (total >= 40) return { grade: "E", remark: "Pass" };
   return { grade: "F", remark: "Fail" };
 }
 
@@ -187,7 +187,7 @@ app.post("/api/auth/login", (req, res) => {
     const isCorrect = customPassword 
       ? cleanPassword === customPassword 
       : (user.role === "admin" && cleanPassword === "admin123") || 
-        (user.role === "teacher" && cleanPassword === "teacher123");
+        (user.role === "teacher" && cleanPassword === "teacher222");
     if (isCorrect) {
       let avatarUrl = user.avatarUrl;
       if (user.role === "teacher" && user.teacherId) {
@@ -389,7 +389,7 @@ app.get("/api/teachers", (req, res) => {
     return {
       ...t,
       username: u ? u.username : "",
-      password: u ? (u as any).password || "teacher123" : "teacher123"
+      password: u ? (u as any).password || "teacher222" : "teacher222"
     };
   });
   res.json(teachersWithUsers);
@@ -402,6 +402,7 @@ app.post("/api/teachers", (req, res) => {
   
   const newTeacher: Teacher = {
     id,
+    title: data.title || "Mr.",
     firstName: data.firstName,
     lastName: data.lastName,
     email: data.email,
@@ -417,13 +418,14 @@ app.post("/api/teachers", (req, res) => {
 
   // Auto-create User account for teacher
   const username = (data.username || (data.firstName.charAt(0) + data.lastName).toLowerCase().replace(/\s+/g, "")).trim();
-  const password = (data.password || "teacher123").trim();
+  const password = (data.password || "teacher222").trim();
+  const prefix = data.title ? data.title.trim() : "Mr.";
   
   db.users.push({
     id: "u_" + Math.random().toString(36).substring(2, 9),
     username,
     password,
-    name: `Mr/Mrs. ${data.firstName} ${data.lastName}`,
+    name: `${prefix} ${data.firstName} ${data.lastName}`,
     role: "teacher",
     email: data.email,
     phone: data.phone,
@@ -458,7 +460,8 @@ app.put("/api/teachers/:id", (req, res) => {
   // Find and update corresponding user account
   const userIdx = db.users.findIndex((u: User) => u.teacherId === id);
   if (userIdx !== -1) {
-    db.users[userIdx].name = `Mr/Mrs. ${updatedTeacher.firstName} ${updatedTeacher.lastName}`;
+    const prefix = updatedTeacher.title ? updatedTeacher.title.trim() : "Mr.";
+    db.users[userIdx].name = `${prefix} ${updatedTeacher.firstName} ${updatedTeacher.lastName}`;
     db.users[userIdx].email = updatedTeacher.email;
     db.users[userIdx].phone = updatedTeacher.phone;
     if (req.body.username) db.users[userIdx].username = req.body.username.trim();

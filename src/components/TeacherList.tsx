@@ -23,6 +23,7 @@ export default function TeacherList({ userRole }: TeacherListProps) {
   const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null);
 
   const [formData, setFormData] = useState({
+    title: "Mr.",
     firstName: "",
     lastName: "",
     email: "",
@@ -163,6 +164,7 @@ export default function TeacherList({ userRole }: TeacherListProps) {
   const openEditModal = (teacher: Teacher) => {
     setSelectedTeacher(teacher);
     setFormData({
+      title: teacher.title || "Mr.",
       firstName: teacher.firstName,
       lastName: teacher.lastName,
       email: teacher.email,
@@ -181,6 +183,7 @@ export default function TeacherList({ userRole }: TeacherListProps) {
   const resetForm = () => {
     setSelectedTeacher(null);
     setFormData({
+      title: "Mr.",
       firstName: "",
       lastName: "",
       email: "",
@@ -190,7 +193,7 @@ export default function TeacherList({ userRole }: TeacherListProps) {
       dateJoined: new Date().toISOString().split('T')[0],
       assignedClassId: "",
       username: "",
-      password: "teacher123",
+      password: "teacher222",
       avatarUrl: ""
     });
   };
@@ -265,7 +268,7 @@ export default function TeacherList({ userRole }: TeacherListProps) {
                     </div>
                   )}
                   <div>
-                    <h3 className="font-extrabold text-gray-800 text-base">Mr/Mrs. {teacher.firstName} {teacher.lastName}</h3>
+                    <h3 className="font-extrabold text-gray-800 text-base">{teacher.title || "Mr."} {teacher.firstName} {teacher.lastName}</h3>
                     <span className="text-xxs text-gray-400 font-mono tracking-wider uppercase block mt-0.5">
                       ID: {teacher.id} { (teacher as any).username && `| User: ${(teacher as any).username}` }
                     </span>
@@ -326,8 +329,8 @@ export default function TeacherList({ userRole }: TeacherListProps) {
       {/* Modals */}
       {(showAddModal || showEditModal) && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-white rounded-xl shadow-xl max-w-lg w-full">
-            <div className="flex justify-between items-center p-5 border-b">
+          <div className="bg-white rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] flex flex-col">
+            <div className="flex justify-between items-center p-5 border-b flex-shrink-0">
               <h3 className="font-extrabold text-gray-800 text-lg flex items-center gap-2">
                 <UserCheck className="text-indigo-600" /> {showAddModal ? "Register Faculty Member" : "Modify Faculty Record"}
               </h3>
@@ -336,9 +339,27 @@ export default function TeacherList({ userRole }: TeacherListProps) {
               </button>
             </div>
 
-            <form onSubmit={showAddModal ? handleAddSubmit : handleEditSubmit} className="p-6 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
+            <form onSubmit={showAddModal ? handleAddSubmit : handleEditSubmit} className="p-6 space-y-4 overflow-y-auto flex-1">
+              <div className="grid grid-cols-5 gap-3">
+                <div className="col-span-1">
+                  <label className="block text-xs font-semibold text-gray-600 mb-1">Title</label>
+                  <select
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    className="w-full text-sm border p-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
+                  >
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mrs.">Mrs.</option>
+                    <option value="Ms.">Ms.</option>
+                    <option value="Dr.">Dr.</option>
+                    <option value="Prof.">Prof.</option>
+                    <option value="Rev.">Rev.</option>
+                    <option value="Pst.">Pst.</option>
+                    <option value="Mallam">Mallam</option>
+                    <option value="Alhaji">Alhaji</option>
+                  </select>
+                </div>
+                <div className="col-span-2">
                   <label className="block text-xs font-semibold text-gray-600 mb-1">First Name</label>
                   <input
                     type="text"
@@ -348,7 +369,7 @@ export default function TeacherList({ userRole }: TeacherListProps) {
                     className="w-full text-sm border p-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
-                <div>
+                <div className="col-span-2">
                   <label className="block text-xs font-semibold text-gray-600 mb-1">Last Name</label>
                   <input
                     type="text"
@@ -508,7 +529,7 @@ export default function TeacherList({ userRole }: TeacherListProps) {
                     <label className="block text-xxs font-bold text-gray-500 mb-1">Portal Password</label>
                     <input
                       type="text"
-                      placeholder="Defaults to teacher123"
+                      placeholder="Defaults to teacher222"
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                       className="w-full text-xs border p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 bg-white"

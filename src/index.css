@@ -1,1 +1,42 @@
 @import "tailwindcss";
+
+@media print {
+  /* Hide everything in the body by default */
+  body * {
+    visibility: hidden !important;
+  }
+  
+  /* Show only the report card sheet and its descendants */
+  #report-card-print-area,
+  #report-card-print-area * {
+    visibility: visible !important;
+  }
+  
+  /* Position the report card at the top-left of the printed page */
+  #report-card-print-area {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 24px !important;
+    border: 4px double #1e293b !important;
+    background-color: white !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+  }
+  
+  /* Ensure the printed container doesn't get clipped by parents' overflow or fixed height */
+  html, body {
+    background: white !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Force browsers to print background colors and badges correctly */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

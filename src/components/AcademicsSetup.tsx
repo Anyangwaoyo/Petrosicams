@@ -236,7 +236,7 @@ export default function AcademicsSetup({ userRole }: AcademicsSetupProps) {
   const getTeacherName = (tid?: string) => {
     if (!tid) return <span className="text-gray-400 italic">None</span>;
     const t = teachers.find(teach => teach.id === tid);
-    return t ? `Mr/Mrs. ${t.firstName} ${t.lastName}` : tid;
+    return t ? `${t.title || "Mr."} ${t.firstName} ${t.lastName}` : tid;
   };
 
   const getClassName = (cid: string) => classes.find(c => c.id === cid)?.name || cid;
@@ -557,7 +557,7 @@ export default function AcademicsSetup({ userRole }: AcademicsSetupProps) {
                 >
                   <option value="">Unassigned</option>
                   {teachers.map(t => (
-                    <option key={t.id} value={t.id}>Mr/Mrs. {t.firstName} {t.lastName}</option>
+                    <option key={t.id} value={t.id}>{t.title || "Mr."} {t.firstName} {t.lastName}</option>
                   ))}
                 </select>
               </div>
@@ -650,7 +650,7 @@ export default function AcademicsSetup({ userRole }: AcademicsSetupProps) {
                   className="w-full text-sm border p-2.5 rounded-lg focus:outline-none"
                 >
                   {teachers.map(t => (
-                    <option key={t.id} value={t.id}>Mr/Mrs. {t.firstName} {t.lastName}</option>
+                    <option key={t.id} value={t.id}>{t.title || "Mr."} {t.firstName} {t.lastName}</option>
                   ))}
                 </select>
               </div>

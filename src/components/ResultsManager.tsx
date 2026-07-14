@@ -233,10 +233,10 @@ export default function ResultsManager({ userRole, activeUserId }: ResultsManage
   };
 
   const getPreviewGrade = (total: number) => {
-    if (total >= 80) return "A";
-    if (total >= 70) return "B";
-    if (total >= 60) return "C";
-    if (total >= 50) return "D";
+    if (total >= 70) return "A";
+    if (total >= 60) return "B";
+    if (total >= 50) return "C";
+    if (total >= 45) return "D";
     if (total >= 40) return "E";
     return "F";
   };
@@ -549,8 +549,8 @@ export default function ResultsManager({ userRole, activeUserId }: ResultsManage
                             <td className="py-3 px-4 text-center font-bold text-indigo-900">{total}</td>
                             <td className="py-3 px-4 text-center">
                               <span className={`inline-block px-2 py-0.5 rounded text-xs font-mono font-bold ${
-                                total >= 80 ? "bg-green-100 text-green-800" :
-                                total >= 60 ? "bg-blue-100 text-blue-800" :
+                                total >= 70 ? "bg-green-100 text-green-800" :
+                                total >= 50 ? "bg-blue-100 text-blue-800" :
                                 total >= 40 ? "bg-yellow-100 text-yellow-800" :
                                 "bg-red-100 text-red-800"
                               }`}>{getPreviewGrade(total)}</span>

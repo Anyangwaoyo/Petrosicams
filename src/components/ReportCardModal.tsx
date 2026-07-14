@@ -101,6 +101,7 @@ export default function ReportCardModal({ studentId, onClose, userRole }: Report
   };
 
   const handlePrint = () => {
+    window.focus();
     window.print();
   };
 
@@ -163,7 +164,7 @@ export default function ReportCardModal({ studentId, onClose, userRole }: Report
         {/* Content Area */}
         <div className="flex-1 overflow-y-auto p-6 md:p-8 print:p-0 print:overflow-visible">
           {/* Printable Report Card Sheet */}
-          <div className="border-4 border-double border-gray-800 p-6 rounded-lg bg-white print:border-none print:p-0">
+          <div id="report-card-print-area" className="border-4 border-double border-gray-800 p-6 rounded-lg bg-white print:border-none print:p-0">
             {/* School Header */}
             <div className="text-center border-b-2 border-gray-800 pb-4 mb-6">
               <h1 className="text-2xl md:text-3xl font-extrabold text-indigo-950 uppercase tracking-tight">
@@ -293,7 +294,7 @@ export default function ReportCardModal({ studentId, onClose, userRole }: Report
             {/* Grading System Key */}
             <div className="mb-6 p-3 bg-gray-50 border rounded-lg text-xxs text-gray-500 font-mono">
               <span className="font-bold text-gray-700 mr-2 uppercase">Grading Criteria:</span>
-              <span>A: 80-100 (Excellent)  |  B: 70-79 (Very Good)  |  C: 60-69 (Good)  |  D: 50-59 (Pass)  |  E: 40-49 (Weak Pass)  |  F: 0-39 (Fail)</span>
+              <span>A: 70-100 (Excellent)  |  B: 60-69 (Very Good)  |  C: 50-59 (Good)  |  D: 45-49 (Fair)  |  E: 40-44 (Pass)  |  F: 0-39 (Fail)</span>
             </div>
 
             {/* Remarks Section */}

@@ -13,7 +13,6 @@ export default function Login({ onLoginSuccess }: LoginProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [roleMode, setRoleMode] = useState<"staff" | "student">("staff");
-  const [showCreds, setShowCreds] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -165,37 +164,6 @@ export default function Login({ onLoginSuccess }: LoginProps) {
             </button>
           </form>
 
-          {/* Collapsible Quick Help Credentials */}
-          <div className="mt-8 pt-4 border-t border-gray-100 text-center">
-            <button
-              type="button"
-              onClick={() => setShowCreds(!showCreds)}
-              className="text-xs text-indigo-600 hover:text-indigo-800 font-semibold focus:outline-none transition-colors"
-            >
-              {showCreds ? "Hide Development Access Credentials" : "Show Development Access Credentials"}
-            </button>
-
-            {showCreds && (
-              <div className="mt-4 text-left bg-slate-50 border border-slate-100 rounded-xl p-4 transition-all duration-300">
-                <span className="block text-xxs font-extrabold text-indigo-950 uppercase tracking-widest mb-2 text-center">Development Access Credentials</span>
-                <div className="grid grid-cols-2 gap-2 text-[11px] text-gray-500 leading-relaxed">
-                  <div className="p-2 bg-white rounded-lg border border-gray-100 shadow-xs">
-                    <strong className="block text-gray-700 font-bold mb-0.5">Admin Staff</strong>
-                    <p>User: <span className="font-mono bg-slate-100 px-1 py-0.2 rounded">admin</span></p>
-                    <p>Pass: <span className="font-mono bg-slate-100 px-1 py-0.2 rounded">admin123</span></p>
-                  </div>
-                  <div className="p-2 bg-white rounded-lg border border-gray-100 shadow-xs">
-                    <strong className="block text-gray-700 font-bold mb-0.5">Teacher Staff</strong>
-                    <p>User: <span className="font-mono bg-slate-100 px-1 py-0.2 rounded">teacher</span></p>
-                    <p>Pass: <span className="font-mono bg-slate-100 px-1 py-0.2 rounded">teacher123</span></p>
-                  </div>
-                </div>
-                <p className="text-[10px] text-gray-400 text-center mt-3 font-semibold">
-                  💡 Students log in with their assigned Admission Number & password <span className="font-mono text-gray-500">student123</span> (or their last name).
-                </p>
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </div>

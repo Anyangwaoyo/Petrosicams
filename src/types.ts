@@ -36,6 +36,7 @@ export interface Student {
 
 export interface Teacher {
   id: string;
+  title?: string; // e.g. Mr., Mrs., Dr.
   firstName: string;
   lastName: string;
   email: string;
